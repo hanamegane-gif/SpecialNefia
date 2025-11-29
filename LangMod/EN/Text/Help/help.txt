@@ -1,0 +1,115 @@
+$About This Mod
+This mod adds special types of Nefia that apply unique rules to random Nefia.
+Clearing a special Nefia grants additional rewards.
+
+Special Nefia may have multiple rules applied at once.
+
+In addition to extra rewards, you may or may not receive Lawless rune shard.
+Collecting shards allows you to craft the Lawless rune.
+
+$About Special Nefia
+{topic|Might (Danger Level 30+) }
+• All non-physical damage dealt by all characters becomes 0.
+• Many enemies that rely on physical attacks will be generated.
+
+{topic|Magic (Danger Level 30+)}
+• All physical damage dealt by all characters becomes 0.
+• Many enemies that rely on magic will be generated.
+
+{topic|Anti-Magic (Danger Level 20+)}
+• All enemies gain Anti-Magic +80.
+
+{topic|Magic Affinity (Danger Level 20+)}
+• All enemies gain Anti-Magic –80.
+
+{topic|Hellish (Danger Level 200+)}
+• Only dragons, giants, and demons will be generated as enemies.
+
+{topic|(Racial)'s (Danger Level 10+)}
+• Enemies of a specific race spawn in large numbers.
+• The boss will be a character belonging to that race.
+• If there are too few characters of that race, such a Nefia will not be generated.
+
+{topic|Deep (Danger Level 10+)}
+• The Nefia’s maximum depth becomes between 9 - 11 floors.
+
+{topic|Shallow}
+• The Nefia’s maximum depth becomes 1 floor.
+
+{topic|Vast}
+• All floors are generated as large open rooms.
+
+{topic|Lonely (Danger Level 10+)}
+• Pets cannot enter. When entering a Lonely Nefia, any accompanying pets temporarily leave the party.
+• Pets that temporarily left will return to the party upon exiting the Lonely Nefia.
+• Recruiting or capturing characters inside the Nefia is possible, but new pets obtained inside will also temporarily leave when changing floors.
+
+{topic|Jouster’s (Danger Level 10+)}
+• Only mounted or parasitic pets may enter. Any pets that are not mounted/parasitic will temporarily leave upon entry.
+• Pets that temporarily left will return to the party upon exiting the Solo-Mount Nefia.
+• Dismounting or removing parasites inside the Nefia is possible, but moving to another floor while unmounted/unparasitic will cause the pet to temporarily leave.
+• Recruiting or capturing characters is possible, but new pets obtained inside will also temporarily leave when changing floors.
+
+{topic|(God)'s sanctum}
+• Only characters who worship a specific god will be generated.
+• Altars of that god will appear more frequently.
+
+{topic|Mortal (Danger Level 20+)}
+• All damage that all characters take becomes percentage-based HP damage.
+• The higher a character’s Constitution, the lower the damage percentage.
+
+{topic|Deadly (Danger Level 200+)}
+• All characters die upon taking any damage.
+
+{topic|Ancient (Danger Level 150+)}
+• All characters temporarily gain +1 Ancient Race feat when dealing damage.
+
+{topic|Fair}
+• All characters have their speed fixed at 10.
+
+{topic|Fearsome (Danger Level 20+)}
+• Many enemies with 『』 in their names will be generated.
+
+{topic|Tough (Danger Level 10+)}
+• Enemy levels are multiplied by 1.25.
+
+{topic|Illusory}
+• The player is constantly under the Hallucination status.
+
+{topic|Empathetic}
+• All characters constantly receive Telepathy and See Invisible buffs.
+
+{topic|Heavy}
+• All characters constantly suffer from the Gravity debuff.
+• All restraints are immediately removed. (Prevents softlocks)
+
+{topic|Aboveboard}
+• All buffs, debuffs, temporary boosts, temporary weakenings, and abnormal HP values on all characters are immediately removed.
+
+{topic|Booming (Danger Level 20+)}
+• All enemies are constantly under the "Shining Life" effect.
+
+{topic|Apocalyptic (Danger Level 30+)}
+• Meteors periodically fall around the player.
+
+{topic|Vangeful (Danger Level 100+)}
+• Nefia bosses and bosses from the Shrines of Conflict become bosses from the story or quests.
+• To have these bosses appear, you must have completed their related story or quest.
+
+$Options
+You can configure options via:
+BepInEx/config/byakko.elin.SpecialNefia.cfg in the Elin installation folder.
+
+{topic|Special Nefia Spawn Rate}
+• Sets the chance that a normal Nefia will be replaced with a special Nefia.
+• Default is 20(%). Setting it to 100(%) makes every Nefia special;
+  setting it to 0(%) prevents special Nefia from being generated.
+
+{topic|Disable Unlawful Rune Features}
+• When set to false, the crafting recipe for the Lawless rune is removed,
+  and Lawless rune shard will no longer appear as Nefia rewards.
+• Any shards obtained before disabling this will not be deleted.
+
+$Changelog
+{topic|1.0.0}
+Initial release.
