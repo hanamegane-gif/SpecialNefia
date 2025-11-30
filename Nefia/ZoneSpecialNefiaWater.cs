@@ -173,11 +173,11 @@ class ZoneSpecialNefiaWater : Zone_RandomDungeonWater, ISpecialNefia
         }
     }
 
-    public void InvokeEnemyStrengthFixActions(CardBlueprint blueprint)
+    public void InvokeEnemyStrengthFixActions(CardRow original, CardBlueprint blueprint)
     {
         foreach (var rule in EnemyStrengthFixRules)
         {
-            rule.EnemyStrengrhFixAction(blueprint);
+            rule.EnemyStrengrhFixAction(original, blueprint);
         }
     }
 

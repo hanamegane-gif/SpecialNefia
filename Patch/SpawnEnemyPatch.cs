@@ -56,6 +56,7 @@ namespace SpecialNefia.Patch
                 .InsertAndAdvance
                 (
                     new CodeInstruction(OpCodes.Ldarg_0),
+                    new CodeInstruction(OpCodes.Ldloc_S, 5),
                     new CodeInstruction(OpCodes.Ldloc_3),
                     new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(SpawnEnemyPatch), nameof(HandleEnemyStrengthFixActionPatch)))
                 )
@@ -75,11 +76,11 @@ namespace SpecialNefia.Patch
             }
         }
 
-        public static void HandleEnemyStrengthFixActionPatch(Zone currentZone, CardBlueprint blueprint)
+        public static void HandleEnemyStrengthFixActionPatch(Zone currentZone, CardRow original, CardBlueprint blueprint)
         {
             if (currentZone is ISpecialNefia)
             {
-                (currentZone as ISpecialNefia).InvokeEnemyStrengthFixActions(blueprint);
+                (currentZone as ISpecialNefia).InvokeEnemyStrengthFixActions(original, blueprint);
             }
         }
     }

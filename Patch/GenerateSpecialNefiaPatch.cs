@@ -75,9 +75,6 @@ namespace SpecialNefia.Patch
             if (generatedNefia is ISpecialNefia)
             {
                 (generatedNefia as ISpecialNefia).Init();
-                (generatedNefia as ISpecialNefia).RevertToVanillaZoneId();
-                (generatedNefia as ISpecialNefia).AddRuleFloorEvents();
-                (generatedNefia as ISpecialNefia).AddPartyRestrictingEvent();
             }
         }
     }

@@ -41,7 +41,7 @@ namespace SpecialNefia.Nefia
 
         void InvokeDamageHPPostfixActions(Card target, Card origin);
 
-        void InvokeEnemyStrengthFixActions(CardBlueprint blueprint);
+        void InvokeEnemyStrengthFixActions(CardRow original, CardBlueprint blueprint);
 
         void AddRuleFloorEvents();
 

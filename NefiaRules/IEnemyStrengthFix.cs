@@ -8,6 +8,6 @@ namespace SpecialNefia.NefiaRules
 {
     interface IEnemyStrengthFix : INefiaRule
     {
-        void EnemyStrengrhFixAction(CardBlueprint blueprint);
+        void EnemyStrengrhFixAction(CardRow original, CardBlueprint blueprint);
     }
 }
