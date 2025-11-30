@@ -15,12 +15,13 @@ namespace SpecialNefia.NefiaTypes
 
         public override int NefiaTypeOdds => 1;
 
-        public void EnemyStrengrhFixAction(CardBlueprint blueprint)
+        public void EnemyStrengrhFixAction(CardRow original, CardBlueprint blueprint)
         {
             if (blueprint.rarity == Rarity.Normal && EClass.rnd(4) == 0)
             {
+                int originalLv = (original.LV > blueprint.lv) ? original.LV : blueprint.lv;
                 blueprint.rarity = Rarity.Legendary;
-                blueprint.lv = blueprint.lv + (blueprint.lv / 4);
+                blueprint.lv = originalLv + (originalLv / 4);
             }
         }
     }

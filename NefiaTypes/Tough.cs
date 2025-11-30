@@ -15,9 +15,10 @@ namespace SpecialNefia.NefiaTypes
 
         public override int NefiaTypeOdds => 1;
 
-        public void EnemyStrengrhFixAction(CardBlueprint blueprint)
+        public void EnemyStrengrhFixAction(CardRow original, CardBlueprint blueprint)
         {
-            blueprint.lv = blueprint.lv + (blueprint.lv / 4);
+            int originalLv = (original.LV > blueprint.lv) ? original.LV : blueprint.lv;
+            blueprint.lv = originalLv + (originalLv / 4);
         }
     }
 }
