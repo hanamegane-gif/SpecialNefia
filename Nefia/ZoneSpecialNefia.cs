@@ -206,6 +206,11 @@ class ZoneSpecialNefia : Zone_RandomDungeon, ISpecialNefia
 
     public void SpawnRewardChests(Chara boss)
     {
+        if (!_NefiaTypes.Any())
+        {
+            return;
+        }
+
         int odds = GetNefiaTypeOdds();
 
         // 容量の問題と演出のため追加宝箱の中身は分けて出す

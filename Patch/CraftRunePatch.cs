@@ -38,8 +38,7 @@ namespace SpecialNefia.Patch
                 )
                 .Advance(1)
                 .InsertAndAdvance(
-                    new CodeInstruction(OpCodes.Ldarg_0),
-                    new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(RecipeCard), "get_idCard")),
+                    new CodeInstruction(OpCodes.Ldloc_0),
                     new CodeInstruction(OpCodes.Ldarg_S, argPosition),
                     new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(CraftRunePatch), nameof(ExchangeCraftKey))),
                     new CodeInstruction(OpCodes.Stloc_0)
@@ -50,37 +49,41 @@ namespace SpecialNefia.Patch
                 )
                 .Advance(1)
                 .InsertAndAdvance(
+                    new CodeInstruction(OpCodes.Ldarg_0),
+                    new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(RecipeCard), "get_idCard")),
                     new CodeInstruction(OpCodes.Ldarg_3),//ing
                     new CodeInstruction(OpCodes.Ldloc_S, 10),//thing
                     new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(CraftRunePatch), nameof(SetItemAttributes)))
                 )
                 .InstructionEnumeration();
-
             return cm;
         }
 
-        internal static string ExchangeCraftKey(string idCard, bool isCraftModel)
+        internal static string ExchangeCraftKey(string craftKey, bool isCraftModel)
         {
-            if (!isCraftModel && idCard == "MOD_byakko_SPN_rune_free")
+            if (!isCraftModel && craftKey == "MOD_byakko_SPN_rune_free")
             {
-                return "rene_free";
+                return "rune_free";
             }
 
-            return idCard;
+            return craftKey;
         }
 
-        internal static void SetItemAttributes(List<Thing> ingridients, Thing craftedItem)
+        internal static void SetItemAttributes(string idCard, List<Thing> ingridients, Thing craftedItem)
         {
-            var rune = ingridients.Find(i => i.id == "rune");
+            if (idCard == "MOD_byakko_SPN_rune_free")
+            {
+                var rune = ingridients.Find(i => i.id == "rune");
 
-            if (rune != null)
-            {
-                craftedItem.refVal = rune.refVal;
-                craftedItem.encLV = rune.encLV;
-            }
-            else
-            {
-                craftedItem.encLV = 0;
+                if (rune != null)
+                {
+                    craftedItem.refVal = rune.refVal;
+                    craftedItem.encLV = rune.encLV;
+                }
+                else
+                {
+                    craftedItem.encLV = 0;
+                }
             }
         }
     }

@@ -14,7 +14,7 @@ namespace SpecialNefia.Patch
     [HarmonyPatch]
     class SpawnEnemyPatch
     {
-        [HarmonyPatch(typeof(Zone), nameof(Zone.SpawnMob)), HarmonyPostfix]
+        [HarmonyPatch(typeof(Zone), nameof(Zone.SpawnMob), new Type[] { typeof(Point), typeof(SpawnSetting) }), HarmonyPostfix]
         internal static void HandleSpawnsPostfixActionPatch(Chara __result)
         {
             if (EClass._zone is ISpecialNefia)
@@ -25,7 +25,7 @@ namespace SpecialNefia.Patch
         }
 
         [HarmonyTranspiler]
-        [HarmonyPatch(typeof(Zone), nameof(Zone.SpawnMob))]
+        [HarmonyPatch(typeof(Zone), nameof(Zone.SpawnMob), new Type[] { typeof(Point), typeof(SpawnSetting) })]
         internal static IEnumerable<CodeInstruction> SpawnMobPatch(IEnumerable<CodeInstruction> instructions)
         {
             var ci = new CodeMatcher(instructions)
