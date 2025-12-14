@@ -15,7 +15,9 @@ namespace SpecialNefia.NefiaTypes
 
         public override int MinDangerLv => 20;
 
-        public override int NefiaTypeOdds => 1;
+        public override int NefiaTypeOdds => 2;
+
+        public override int RuleDescriptionId => 912018;
 
         public void DamageFixAction(Card target, ref long dmg, int ele, ref AttackSource attackSource)
         {

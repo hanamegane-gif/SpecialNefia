@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 
 namespace SpecialNefia.NefiaTypes
 {
-    internal class NefiaType
+    internal abstract class NefiaType
     {
-        public virtual string NefiaTypeName => "？？？？";
+        public abstract string NefiaTypeName { get; }
 
         public virtual int MinDangerLv => 1;
 
-        public virtual int NefiaTypeOdds => 0;
+        public abstract int NefiaTypeOdds { get; }
+
+        public abstract int RuleDescriptionId { get; }
 
         internal virtual bool IsMeetRequirement(Zone_Dungeon nefia)
         {

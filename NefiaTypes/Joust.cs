@@ -14,7 +14,9 @@ namespace SpecialNefia.NefiaTypes
 
         public override int MinDangerLv => 10;
 
-        public override int NefiaTypeOdds => 1;
+        public override int NefiaTypeOdds => 2;
+
+        public override int RuleDescriptionId => 912013;
 
         public ZoneEvent GetPartyRestrictingEvent()
         {

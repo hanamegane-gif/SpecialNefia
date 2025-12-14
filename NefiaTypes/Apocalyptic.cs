@@ -16,6 +16,8 @@ namespace SpecialNefia.NefiaTypes
 
         public override int NefiaTypeOdds => 1;
 
+        public override int RuleDescriptionId => 912003;
+
         public ZoneEvent GetFloorEvent()
         {
             return new ZoneEventApocalyptic();

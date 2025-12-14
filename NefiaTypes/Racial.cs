@@ -19,6 +19,8 @@ namespace SpecialNefia.NefiaTypes
 
         public override string NefiaTypeName => (SpawnRace?.GetName() ?? "?") + "byakko_mod_nefia_racial".lang();
 
+        public override int RuleDescriptionId => 912019;
+
         private HashSet<string> CandidatesCache = new HashSet<string>();
 
         // 基本x1だがヤバめの種族は倍率を上げる
@@ -31,9 +33,14 @@ namespace SpecialNefia.NefiaTypes
                     return 1;
                 }
 
-                if (SpawnRace.id == "lich" || SpawnRace.id == "demon" || SpawnRace.id == "dragon")
+                if (SpawnRace.id == "lich")
                 {
                     return 2;
+                }
+
+                if (SpawnRace.id == "demon" || SpawnRace.id == "dragon")
+                {
+                    return 4;
                 }
 
                 return 0;

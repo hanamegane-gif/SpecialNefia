@@ -15,6 +15,8 @@ namespace SpecialNefia.NefiaTypes
 
         public override int NefiaTypeOdds => 2;
 
+        public override int RuleDescriptionId => 912001;
+
         public void DamageHPPrefixAction(Card target, Card origin)
         {
             if (origin != null && origin.isChara)

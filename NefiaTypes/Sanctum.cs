@@ -18,6 +18,8 @@ namespace SpecialNefia.NefiaTypes
 
         public override string NefiaTypeName => (NefiaReligion?.NameShort ?? "?") + "byakko_mod_nefia_sanctum".lang();
 
+        public override int RuleDescriptionId => 912020;
+
         // 基本x1だが速度が上がる信仰は倍率を上げる
         public override int NefiaTypeOdds
         {

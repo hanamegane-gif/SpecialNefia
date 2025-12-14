@@ -15,6 +15,8 @@ namespace SpecialNefia.NefiaTypes
 
         public override int NefiaTypeOdds => 1;
 
+        public override int RuleDescriptionId => 912008;
+
         public int GetSpeedFix(Chara c, int speedMul, Element.BonusInfo info)
         {
             info?.AddFix(-(speedMul), "byakko_mod_nefia_fair_speedfix".lang());

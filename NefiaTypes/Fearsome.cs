@@ -15,6 +15,8 @@ namespace SpecialNefia.NefiaTypes
 
         public override int NefiaTypeOdds => 1;
 
+        public override int RuleDescriptionId => 912009;
+
         public void EnemyStrengrhFixAction(CardRow original, CardBlueprint blueprint)
         {
             if (blueprint.rarity == Rarity.Normal && EClass.rnd(4) == 0)

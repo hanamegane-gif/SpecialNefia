@@ -15,17 +15,21 @@ namespace SpecialNefia.NefiaTypes
 
         public override int NefiaTypeOdds => 1;
 
+        public override int RuleDescriptionId => 912024;
+
         // 攻撃者不明のダメージで倒すと殺害数にカウントされないためクエストフラグを直接見る
         // デュポンヌとかはそもそも交戦すらしない
-        private Dictionary<string, string> BossFlagQuestDict { get; } = new Dictionary<string, string>
+        private Dictionary<string, Func<bool>> BossFlagQuestDict2 { get; } = new Dictionary<string, Func<bool>>
         {
-            {"isygarad", "exploration"},
-            {"ungaga_pap", "negotiation_darkness"},
-            {"melilith_boss", "melilith"},
-            {"vernis_boss", "vernis_gold"},
-            {"lurie_boss", "negotiation_darkness"},
-            {"doga", "curry"},
+            {"isygarad", () => EClass.game.quests.IsCompleted("exploration") },
+            {"ungaga_pap", () => EClass.game.quests.IsCompleted("negotiation_darkness") },
+            {"melilith_boss", () => EClass.game.quests.IsCompleted("melilith") },
+            {"vernis_boss", () => EClass.game.quests.IsCompleted("vernis_gold") },
+            {"lurie_boss", () => EClass.game.quests.IsCompleted("negotiation_darkness") },
+            {"doga", () => EClass.game.quests.IsCompleted("curry") },
+            {"azzrasizzle", () => EClass.game.quests.IsCompleted("into_darkness") || EClass.game.quests.GetPhase<QuestIntoDarkness>() > 5 },
         };
+
 
         private HashSet<string> CandidatesCache = new HashSet<string>();
 
@@ -33,7 +37,7 @@ namespace SpecialNefia.NefiaTypes
         {
             if (!CandidatesCache.Any())
             {
-                CandidatesCache = EClass.sources.charas.rows.Where(r => BossFlagQuestDict.ContainsKey(r.id) && IsSpawnable(r.id))
+                CandidatesCache = EClass.sources.charas.rows.Where(r => IsSpawnableBoss(r.id))
                                         .Select(r => r.id).ToHashSet();
             }
 
@@ -58,16 +62,16 @@ namespace SpecialNefia.NefiaTypes
             return nefiaType is ISpawnListFix;
         }
 
-        private bool IsSpawnable(string id)
+        private bool IsSpawnableBoss(string id)
         {
-            return EClass.game.quests.IsCompleted(BossFlagQuestDict.TryGetValue(id));
+            return BossFlagQuestDict2.ContainsKey(id) && BossFlagQuestDict2[id]();
         }
 
         private bool IsExistSpawnableBoss()
         {
-            foreach (var kvp in BossFlagQuestDict)
+            foreach (var kvp in BossFlagQuestDict2)
             {
-                if (EClass.game.quests.IsCompleted(kvp.Value))
+                if (BossFlagQuestDict2[kvp.Key]())
                 {
                     return true;
                 }

@@ -17,6 +17,8 @@ namespace SpecialNefia.NefiaTypes
         // 魔法が優位に、ただしタンクが機能しなくなるため難易度は高い
         public override int NefiaTypeOdds => 3;
 
+        public override int RuleDescriptionId => 912005;
+
         public void DamageFixAction(Card target, ref long dmg, int ele, ref AttackSource attackSource)
         {
             if (!target.isChara)

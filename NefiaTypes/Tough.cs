@@ -15,6 +15,8 @@ namespace SpecialNefia.NefiaTypes
 
         public override int NefiaTypeOdds => 1;
 
+        public override int RuleDescriptionId => 912022;
+
         public void EnemyStrengrhFixAction(CardRow original, CardBlueprint blueprint)
         {
             int originalLv = (original.LV > blueprint.lv) ? original.LV : blueprint.lv;

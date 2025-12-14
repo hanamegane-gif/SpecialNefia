@@ -35,6 +35,8 @@ namespace SpecialNefia.NefiaTypes
             }
         }
 
+        public override int RuleDescriptionId => 912014;
+
         public ZoneEvent GetPartyRestrictingEvent()
         {
             return new ZoneEventLonely();

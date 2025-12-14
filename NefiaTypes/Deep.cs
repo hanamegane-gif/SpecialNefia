@@ -16,6 +16,8 @@ namespace SpecialNefia.NefiaTypes
         // 単純に長いため報酬多め
         public override int NefiaTypeOdds => 2;
 
+        public override int RuleDescriptionId => 912006;
+
         public int GetFloorNum(Zone nefia)
         {
             Rand.SetSeed(nefia.GetTopZone().uid);

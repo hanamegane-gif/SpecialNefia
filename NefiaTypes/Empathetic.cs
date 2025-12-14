@@ -15,6 +15,8 @@ namespace SpecialNefia.NefiaTypes
 
         public override int NefiaTypeOdds => 1;
 
+        public override int RuleDescriptionId => 912007;
+
         public void TickPostfixAction(Chara target)
         {
             if (target == null)

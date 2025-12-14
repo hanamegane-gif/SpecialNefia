@@ -15,6 +15,8 @@ namespace SpecialNefia.NefiaTypes
 
         public override int NefiaTypeOdds => 1;
 
+        public override int RuleDescriptionId => 912016;
+
         public void SpawnMobPostfixAction(Chara spawned)
         {
             spawned?.elements.ModBase(SKILL.antiMagic, -80);

@@ -16,6 +16,8 @@ namespace SpecialNefia.NefiaTypes
         // x1でもいいかも？
         public override int NefiaTypeOdds => 1;
 
+        public override int RuleDescriptionId => 912023;
+
         public string GetDungeonID()
         {
             return "CavernBig";

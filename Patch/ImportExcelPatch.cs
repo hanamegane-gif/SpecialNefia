@@ -43,5 +43,13 @@ namespace SpecialNefia.Patch
             var sources = Core.Instance.sources;
             ModUtil.ImportExcel(excel, "Thing", sources.things);
         }
+
+        internal static void ExecImportElements(in PluginInfo info)
+        {
+            var dir = Path.Combine(Path.GetDirectoryName(info.Location), __MOD_SOURCE_DIR__);
+            var excel = Path.Combine(dir, "Element.xlsx");
+            var sources = Core.Instance.sources;
+            ModUtil.ImportExcel(excel, "Element", sources.things);
+        }
     }
 }

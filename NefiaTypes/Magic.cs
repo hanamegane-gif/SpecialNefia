@@ -13,7 +13,10 @@ namespace SpecialNefia.NefiaTypes
 
         public override int MinDangerLv => 30;
 
-        public override int NefiaTypeOdds => 1;
+        public override int NefiaTypeOdds => 2;
+
+        public override int RuleDescriptionId => 912015;
+
         private HashSet<string> JobList { get; } = new HashSet<string>
         {
             "wizard", "warmage", "pianist", "priest", "witch", "swordsage", "bard", "alchemist", "none"

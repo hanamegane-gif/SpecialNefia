@@ -63,6 +63,7 @@ class ZoneSpecialNefiaPlain : Zone_RandomDungeonPlain, ISpecialNefia
         RevertToVanillaZoneId();
         AddRuleFloorEvents();
         AddPartyRestrictingEvent();
+        AddRuleDescription();
     }
 
     public void InitSpecialType()
@@ -194,6 +195,14 @@ class ZoneSpecialNefiaPlain : Zone_RandomDungeonPlain, ISpecialNefia
         if (PartyRestrictionRule != null)
         {
             this.events.Add(PartyRestrictionRule.GetPartyRestrictingEvent());
+        }
+    }
+
+    public void AddRuleDescription()
+    {
+        foreach (var nt in _NefiaTypes)
+        {
+            this.SetFieldEffect(nt.RuleDescriptionId, 1);
         }
     }
 

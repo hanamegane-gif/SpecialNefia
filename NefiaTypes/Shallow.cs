@@ -13,6 +13,8 @@ namespace SpecialNefia.NefiaTypes
 
         public override int MinDangerLv => 1;
 
+        public override int RuleDescriptionId => 912021;
+
         public override int NefiaTypeOdds => 0;
 
         public int GetFloorNum(Zone nefia)

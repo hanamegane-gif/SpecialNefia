@@ -17,6 +17,7 @@ namespace SpecialNefia.NefiaTypes
         // バフデバフ禁止は主に透明化リロ勢・ムンゲ勢に刺さる
         // 通常プレイでも猫の目とテレパシー封印はかなりキツイ
         public override int NefiaTypeOdds => 2;
+        public override int RuleDescriptionId => 912000;
 
         public void TickPostfixAction(Chara target)
         {

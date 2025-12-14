@@ -47,6 +47,8 @@ namespace SpecialNefia.Nefia
 
         void AddPartyRestrictingEvent();
 
+        void AddRuleDescription();
+
         void SpawnRewardChests(Chara boss);
 
         // Mod削除時のフォールバックでセーブデータが破壊されるためバニラidに偽装する
