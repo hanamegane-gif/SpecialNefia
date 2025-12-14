@@ -46,7 +46,7 @@ $About Special Nefia
 
 {topic|Jouster’s (Danger Level 10+)}
 • Only mounted or parasitic pets may enter. Any pets that are not mounted/parasitic will temporarily leave upon entry.
-• Pets that temporarily left will return to the party upon exiting the Solo-Mount Nefia.
+• Pets that temporarily left will return to the party upon exiting the Jouster’s Nefia.
 • Dismounting or removing parasites inside the Nefia is possible, but moving to another floor while unmounted/unparasitic will cause the pet to temporarily leave.
 • Recruiting or capturing characters is possible, but new pets obtained inside will also temporarily leave when changing floors.
 
@@ -56,13 +56,13 @@ $About Special Nefia
 
 {topic|Mortal (Danger Level 20+)}
 • All damage that all characters take becomes percentage-based HP damage.
-• The higher a character’s Constitution, the lower the damage percentage.
+• The higher a character’s Life, the lower the damage percentage.
 
 {topic|Deadly (Danger Level 200+)}
 • All characters die upon taking any damage.
 
 {topic|Ancient (Danger Level 150+)}
-• All characters temporarily gain +1 Ancient Race feat when dealing damage.
+• All characters temporarily gain +1 Elder Race feat when dealing damage.
 
 {topic|Fair}
 • All characters have their speed fixed at 10.
@@ -77,17 +77,17 @@ $About Special Nefia
 • The player is constantly under the Hallucination status.
 
 {topic|Empathetic}
-• All characters constantly receive Telepathy and See Invisible buffs.
+• All characters constantly receive "Telepathy" and "See Invisible" buffs.
 
 {topic|Heavy}
 • All characters constantly suffer from the Gravity debuff.
-• All restraints are immediately removed. (Prevents softlocks)
+• Entangled debuff is immediately removed. (Prevents softlocks)
 
 {topic|Aboveboard}
 • All buffs, debuffs, temporary boosts, temporary weakenings, and abnormal HP values on all characters are immediately removed.
 
 {topic|Booming (Danger Level 20+)}
-• All enemies are constantly under the "Shining Life" effect.
+• All enemies are constantly under the "Brightness of Life" effect.
 
 {topic|Apocalyptic (Danger Level 30+)}
 • Meteors periodically fall around the player.
@@ -105,11 +105,29 @@ BepInEx/config/byakko.elin.SpecialNefia.cfg in the Elin installation folder.
 • Default is 20(%). Setting it to 100(%) makes every Nefia special;
   setting it to 0(%) prevents special Nefia from being generated.
 
-{topic|Disable Unlawful Rune Features}
+{topic|Disable Lawless Rune Features}
 • When set to false, the crafting recipe for the Lawless rune is removed,
   and Lawless rune shard will no longer appear as Nefia rewards.
 • Any shards obtained before disabling this will not be deleted.
 
 $Changelog
+{topic|1.0.5}
+Added a field effect to display the current rules.
+Adjusted the amount of additional rewards for Nefia with difficult rules.
+
+{topic|1.0.4}
+(Nightly build only) Fixed an issue where the game wouldn't launch.
+Fixed translation omissions in Lonely/Jouster’s Nefia.
+Fixed an issue where additional rewards were being granted when there were no rules for special Nefia.
+
+{topic|1.0.3}
+Fixed a bug where + values were not being applied when crafting bullets, potions, and other items.
+
+{topic|1.0.2}
+Fixed a bug where -1248Lv enemies would spawn in Fearsome/Tough with a danger level of 50 or lower.
+
+{topic|1.0.1}
+bugfix.
+
 {topic|1.0.0}
 Initial release.
