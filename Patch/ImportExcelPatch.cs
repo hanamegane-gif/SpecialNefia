@@ -49,7 +49,7 @@ namespace SpecialNefia.Patch
             var dir = Path.Combine(Path.GetDirectoryName(info.Location), __MOD_SOURCE_DIR__);
             var excel = Path.Combine(dir, "Element.xlsx");
             var sources = Core.Instance.sources;
-            ModUtil.ImportExcel(excel, "Element", sources.things);
+            ModUtil.ImportExcel(excel, "Element", sources.elements);
         }
     }
 }
