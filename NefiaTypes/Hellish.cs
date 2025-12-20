@@ -18,16 +18,30 @@ namespace SpecialNefia.NefiaTypes
 
         public override int RuleDescriptionId => 912011;
 
-        private HashSet<string> CandidatesCache = new HashSet<string>();
+        private Dictionary<string, int> CandidatesCache = new Dictionary<string, int>();
+
+        private int ChanceSumChache = 0;
 
         public CardRow SpawnListFixAction(CardRow original, SpawnSetting setting)
         {
             if (!CandidatesCache.Any())
             {
                 CandidatesCache = EClass.sources.charas.rows.Where(r => (r.hostility == "") && (r.quality < 4) && r.chance > 0 && (r.race == "dragon" || r.race == "demon" || r.race == "giant"))
-                                        .Select(r => r.id).ToHashSet();
+                                        .ToDictionary(r => r.id, r => r.chance);
+                ChanceSumChache = CandidatesCache.Values.Sum();
             }
-            var spawnID = CandidatesCache.RandomItem();
+            int roll = EClass.rnd(ChanceSumChache);
+            int cumulative = 0;
+            string spawnID = "";
+            foreach (var kvp in CandidatesCache)
+            {
+                cumulative += kvp.Value;
+                if (roll < cumulative)
+                {
+                    spawnID = kvp.Key;
+                    break;
+                }
+            }
             return EClass.sources.charas.rows.Find(r => r.id == spawnID);
         }
 

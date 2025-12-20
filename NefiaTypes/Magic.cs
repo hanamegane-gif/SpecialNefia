@@ -22,7 +22,9 @@ namespace SpecialNefia.NefiaTypes
             "wizard", "warmage", "pianist", "priest", "witch", "swordsage", "bard", "alchemist", "none"
         };
 
-        private HashSet<string> CandidatesCache = new HashSet<string>();
+        private Dictionary<string, int> CandidatesCache = new Dictionary<string, int>();
+
+        private int ChanceSumChache = 0;
 
         public void DamageFixAction(Card target, ref long dmg, int ele, ref AttackSource attackSource)
         {
@@ -51,13 +53,26 @@ namespace SpecialNefia.NefiaTypes
             if (!CandidatesCache.Any())
             {
                 CandidatesCache = EClass.sources.charas.rows.Where(r => (r.hostility == "") && (r.quality < 4) && r.chance > 0 && JobList.Contains(r.job))
-                                        .Select(r => r.id).ToHashSet();
+                                        .ToDictionary(r => r.id, r => r.chance);
+                ChanceSumChache = CandidatesCache.Values.Sum();
             }
 
             if (EClass.rnd(4) != 0 || setting.isBoss)
             {
-                var spawnID = CandidatesCache.RandomItem();
+                int roll = EClass.rnd(ChanceSumChache);
+                int cumulative = 0;
+                string spawnID = "";
+                foreach (var kvp in CandidatesCache)
+                {
+                    cumulative += kvp.Value;
+                    if (roll < cumulative)
+                    {
+                        spawnID = kvp.Key;
+                        break;
+                    }
+                }
                 return EClass.sources.charas.rows.Find(r => r.id == spawnID);
+
             }
             else
             {

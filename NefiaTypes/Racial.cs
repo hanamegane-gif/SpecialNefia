@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using static BiomeProfile;
 
 namespace SpecialNefia.NefiaTypes
@@ -21,7 +22,9 @@ namespace SpecialNefia.NefiaTypes
 
         public override int RuleDescriptionId => 912019;
 
-        private HashSet<string> CandidatesCache = new HashSet<string>();
+        private Dictionary<string, int> CandidatesCache = new Dictionary<string, int>();
+
+        private int ChanceSumChache = 0;
 
         // 基本x1だがヤバめの種族は倍率を上げる
         public override int NefiaTypeOdds
@@ -52,12 +55,24 @@ namespace SpecialNefia.NefiaTypes
             if (!CandidatesCache.Any())
             {
                 CandidatesCache = EClass.sources.charas.rows.Where(r => (r.hostility == "") && (r.quality < 4) && r.chance > 0 && r.race == SpawnRace.id)
-                                        .Select(r => r.id).ToHashSet();
+                                        .ToDictionary(r => r.id, r => r.chance);
+                ChanceSumChache = CandidatesCache.Values.Sum();
             }
 
             if (EClass.rnd(4) != 0 || setting.isBoss)
             {
-                var spawnID = CandidatesCache.RandomItem();
+                int roll = EClass.rnd(ChanceSumChache);
+                int cumulative = 0;
+                string spawnID = "";
+                foreach (var kvp in CandidatesCache)
+                {
+                    cumulative += kvp.Value;
+                    if (roll < cumulative)
+                    {
+                        spawnID = kvp.Key;
+                        break;
+                    }
+                }
                 return EClass.sources.charas.rows.Find(r => r.id == spawnID);
             }
             else
