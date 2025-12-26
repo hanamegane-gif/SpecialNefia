@@ -1,4 +1,5 @@
-﻿using SpecialNefia.NefiaRules;
+﻿using Newtonsoft.Json;
+using SpecialNefia.NefiaRules;
 using SpecialNefia.SpecialZoneEvent;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,9 @@ namespace SpecialNefia.NefiaTypes
         public override string NefiaTypeName => "byakko_mod_nefia_lonely".lang();
 
         public override int MinDangerLv => 10;
+
+        [JsonProperty]
+        private HashSet<int> _DismissedUID = new HashSet<int>();
 
         // 加護あり深層完ソロできる人にはちゃんと報酬を出す
         public override int NefiaTypeOdds
@@ -45,6 +49,21 @@ namespace SpecialNefia.NefiaTypes
         public bool HaveExclusiveRule(NefiaType nefiaType)
         {
             return nefiaType is IPartyRestriction;
+        }
+
+        public HashSet<int> GetDismissedCharas()
+        {
+            return _DismissedUID;
+        }
+
+        public void AddDismissedChara(int uid)
+        {
+            _DismissedUID.Add(uid);
+        }
+
+        public void ClearDismissedChara()
+        {
+            _DismissedUID = new HashSet<int>();
         }
     }
 }

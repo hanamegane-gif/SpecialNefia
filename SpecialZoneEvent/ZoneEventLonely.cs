@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using SpecialNefia.Nefia;
+using SpecialNefia.NefiaTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +17,7 @@ namespace SpecialNefia.SpecialZoneEvent
 
         public override void OnVisit()
         {
-            if (DismissedUID == null)
-            {
-                DismissedUID = new HashSet<int>();
-            }
+            var nt = (this.zone as ISpecialNefia).GetSpecialTypes().Find(t => (t is Lonely)) as Lonely;
 
             bool dismissed = false;
             for (int i = EClass.pc.party.members.Count - 1; i >= 0; i--)
@@ -26,7 +25,7 @@ namespace SpecialNefia.SpecialZoneEvent
                 Chara member = EClass.pc.party.members[i];
                 if (member != EClass.pc)
                 {
-                    DismissedUID.Add(member.uid);
+                    nt.AddDismissedChara(member.uid);
                     EClass.pc.party.RemoveMember(member);
                     member.MoveZone(member.homeZone);
                     dismissed = true;
@@ -46,12 +45,15 @@ namespace SpecialNefia.SpecialZoneEvent
                 return;
             }
 
-            foreach (var UID in DismissedUID)
+            var nt = (this.zone as ISpecialNefia).GetSpecialTypes().Find(t => (t is Lonely)) as Lonely;
+            foreach (var UID in nt.GetDismissedCharas())
             {
                 var chara = EClass.game.cards.globalCharas.Where((KeyValuePair<int, Chara> a) => a.Value.uid == UID).FirstOrDefault().Value;
                 EClass._zone.AddCard(chara, EClass.pc.pos.GetNearestPoint());
                 EClass.pc.party.AddMemeber(chara, showMsg: false);
             }
+
+            nt.ClearDismissedChara();
         }
     }
 }
