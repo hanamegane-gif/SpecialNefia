@@ -15,7 +15,20 @@ namespace SpecialNefia.NefiaTypes
 
         public override int MinDangerLv => 10;
 
-        public override int NefiaTypeOdds => 2;
+        public override int NefiaTypeOdds
+        {
+            get
+            {
+                if (EClass.game.principal.disableVoidBlessing || EClass._zone.DangerLv < 400)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 2;
+                }
+            }
+        }
 
         public override int RuleDescriptionId => 912013;
 

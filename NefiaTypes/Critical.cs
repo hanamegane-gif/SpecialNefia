@@ -15,7 +15,7 @@ namespace SpecialNefia.NefiaTypes
         public override int MinDangerLv => 200;
 
         // 魔法が優位に、ただしタンクが機能しなくなるため難易度は高い
-        public override int NefiaTypeOdds => 3;
+        public override int NefiaTypeOdds => 2;
 
         public override int RuleDescriptionId => 912005;
 

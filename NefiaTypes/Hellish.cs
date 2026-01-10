@@ -14,7 +14,7 @@ namespace SpecialNefia.NefiaTypes
 
         public override int MinDangerLv => 200;
 
-        public override int NefiaTypeOdds => 4;
+        public override int NefiaTypeOdds => 3;
 
         public override int RuleDescriptionId => 912011;
 

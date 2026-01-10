@@ -23,6 +23,11 @@ namespace SpecialNefia.NefiaTypes
         {
             get
             {
+                if (EClass._zone.DangerLv < 200)
+                {
+                    return 1;
+                }
+
                 if (EClass.game.principal.disableVoidBlessing || EClass.game.principal.enableDamageReduction || EClass._zone.DangerLv < 1500)
                 {
                     return 2;

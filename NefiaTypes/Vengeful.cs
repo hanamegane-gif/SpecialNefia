@@ -19,9 +19,11 @@ namespace SpecialNefia.NefiaTypes
 
         // 攻撃者不明のダメージで倒すと殺害数にカウントされないためクエストフラグを直接見る
         // デュポンヌとかはそもそも交戦すらしない
-        private Dictionary<string, Func<bool>> BossFlagQuestDict2 { get; } = new Dictionary<string, Func<bool>>
+        private Dictionary<string, Func<bool>> BossFlagQuestDict { get; } = new Dictionary<string, Func<bool>>
         {
             {"isygarad", () => EClass.game.quests.IsCompleted("exploration") },
+            {"mech_golem_a", () => EClass.game.quests.IsCompleted("exploration") },
+            {"mech_golem_b", () => EClass.game.quests.IsCompleted("exploration") },
             {"ungaga_pap", () => EClass.game.quests.IsCompleted("negotiation_darkness") },
             {"melilith_boss", () => EClass.game.quests.IsCompleted("melilith") },
             {"vernis_boss", () => EClass.game.quests.IsCompleted("vernis_gold") },
@@ -64,14 +66,14 @@ namespace SpecialNefia.NefiaTypes
 
         private bool IsSpawnableBoss(string id)
         {
-            return BossFlagQuestDict2.ContainsKey(id) && BossFlagQuestDict2[id]();
+            return BossFlagQuestDict.ContainsKey(id) && BossFlagQuestDict[id]();
         }
 
         private bool IsExistSpawnableBoss()
         {
-            foreach (var kvp in BossFlagQuestDict2)
+            foreach (var kvp in BossFlagQuestDict)
             {
-                if (BossFlagQuestDict2[kvp.Key]())
+                if (BossFlagQuestDict[kvp.Key]())
                 {
                     return true;
                 }

@@ -43,7 +43,7 @@ namespace SpecialNefia.NefiaTypes
 
                 if (SpawnRace.id == "demon" || SpawnRace.id == "dragon")
                 {
-                    return 4;
+                    return 3;
                 }
 
                 return 0;

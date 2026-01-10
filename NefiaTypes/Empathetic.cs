@@ -13,7 +13,20 @@ namespace SpecialNefia.NefiaTypes
 
         public override int MinDangerLv => 1;
 
-        public override int NefiaTypeOdds => 1;
+        public override int NefiaTypeOdds
+        {
+            get
+            {
+                if (EClass._zone.DangerLv < 400)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+        }
 
         public override int RuleDescriptionId => 912007;
 
