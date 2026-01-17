@@ -9,6 +9,7 @@ using static LayerFaith;
 using SpecialNefia.Config;
 using SpecialNefia.Nefia;
 using SpecialNefia.NefiaTypes;
+using System.Security.Policy;
 
 namespace SpecialNefia.Patch
 {
@@ -41,10 +42,9 @@ namespace SpecialNefia.Patch
                     //IL_001b: ldarg.0
                     //IL_001c: ldc.i4.1
                 )
+                .Advance(1)
                 .InsertAndAdvance(
-                    new CodeMatch(OpCodes.Ldarg_2),
-                    new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(GenerateSpecialNefiaPatch), nameof(ConvertToSpecialNefia))),
-                    new CodeInstruction(OpCodes.Starg_S, 2)
+                    new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(GenerateSpecialNefiaPatch), nameof(ConvertToSpecialNefia)))
                 )
                 .MatchEndForward(
                     new CodeMatch(OpCodes.Ldloc_0),
