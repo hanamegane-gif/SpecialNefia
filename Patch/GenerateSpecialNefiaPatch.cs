@@ -20,18 +20,6 @@ namespace SpecialNefia.Patch
         [HarmonyPatch(typeof(Region), nameof(Region.CreateRandomSite), new Type[] { typeof(Point), typeof(string), typeof(bool), typeof(int) })]
         internal static IEnumerable<CodeInstruction> ConvertSpecialNefiaPatch(IEnumerable<CodeInstruction> instructions)
         {
-            var MP = AccessTools.Method(typeof(Region), nameof(Region.CreateRandomSite), new Type[] { typeof(Point), typeof(string), typeof(bool), typeof(int) }).GetParameters();
-            var argPosition = 114514;
-
-            foreach (var pi in MP)
-            {
-                if (pi.Name == "lv")
-                {
-                    argPosition = pi.Position + 1;
-                    break;
-                }
-            }
-
             var ci = new CodeMatcher(instructions)
                 .MatchStartForward(
                     new CodeMatch(OpCodes.Ldarg_2),
