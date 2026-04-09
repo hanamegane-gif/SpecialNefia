@@ -15,7 +15,7 @@ namespace SpecialNefia.NefiaTypes
                                      .Select(i => Activator.CreateInstance(i))
                                      .Cast<NefiaType>()
                                      .Where(t => t.IsMeetRequirement(nefia))
-                                     .OrderBy(_ => EClass.rnd(114514)).Take(typeNum)
+                                     .OrderBy(_ => Guid.NewGuid()).Take(typeNum)
                                      .ToList();
         }
     }
