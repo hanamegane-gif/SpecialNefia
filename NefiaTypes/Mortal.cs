@@ -39,7 +39,9 @@ namespace SpecialNefia.NefiaTypes
             }
 
             dmg = target.MaxHP + ((target.Evalue(FEAT.featManaMeat) > 0) ? (target as Chara).mana.max : 0);
-            dmg = dmg / (1 + (GetCurrentLife(target) / 20)) + 1;
+            // 生命力に依存した死亡までの攻撃回数と敵Lvに応じた与ダメージ減衰を計算
+            // (Lvによる与ダメ減衰は通常プレイにおいて深層の敵が柔らかくなりすぎるため導入)
+            dmg = dmg / (1 + (GetCurrentLife(target) * GetDangerLvMultiplier(target) / 20)) + 1;
             attackSource = AttackSource.Finish;
         }
 
@@ -51,6 +53,18 @@ namespace SpecialNefia.NefiaTypes
             int life = target.Evalue(SKILL.life) * (100 + rarityMultiplier + lonelyMultiplier) / 100;
 
             return Mathf.Max(life, 0);
+        }
+
+        public int GetDangerLvMultiplier(Card target)
+        {
+            if (!target.IsPCFactionOrMinion && target.LV >= 1600)
+            {
+                return (int)Math.Sqrt((Math.Sqrt(target.LV / 100)));
+            }
+            else
+            {
+                return 1;
+            }
         }
 
         public bool HaveExclusiveRule(NefiaType nefiaType)

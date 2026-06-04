@@ -92,7 +92,7 @@ $About Special Nefia
 {topic|Apocalyptic (Danger Level 30+)}
 • Meteors periodically fall around the player.
 
-{topic|Vangeful (Danger Level 100+)}
+{topic|Vengeful (Danger Level 100+)}
 • Nefia bosses and bosses from the Shrines of Conflict become bosses from the story or quests.
 • To have these bosses appear, you must have completed their related story or quest.
 
@@ -111,6 +111,28 @@ BepInEx/config/byakko.elin.SpecialNefia.cfg in the Elin installation folder.
 • Any shards obtained before disabling this will not be deleted.
 
 $Changelog
+{topic|1.1.1}
+・Tankiness of enemies in Mortal at high dangerLv has been increased. 
+-> (It is intentional that Mortal feels "positive" for player in high dangerLv, however the benefits were too great.)
+
+{topic|1.1.0}
+・Fixed a bug where special Nefia of the Undersea Ruins type were not generated.
+
+{topic|1.0.9}
+・Adjusted the amount of additional loots each rule.
+・Now Able to voluntarily sleep in Aboveboard Nefia.
+・Added Biggs, Wedge to Vengeful Nefia.
+
+{topic|1.0.8}
+・Fixed an issue where companions failed to rejoin after evac/return from Lonely/Jouster Nefia on the 2nd floor or below.
+
+{topic|1.0.7}
+・Rebalanced Nefia with enemy spawn–altering rules to reduce the spawn rate of rare monsters.
+
+{topic|1.0.6}
+Changed rule generation processing so rules are always applied even in lower-tier zones.
+Fixed a critical bug causing resource loading failures.
+
 {topic|1.0.5}
 Added a field effect to display the current rules.
 Adjusted the amount of additional rewards for Nefia with difficult rules.
