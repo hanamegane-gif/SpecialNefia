@@ -133,7 +133,6 @@
     <Compile Include="Patch\DisableCraftFeaturePatch.cs" />
     <Compile Include="Patch\GenerateSpecialNefiaPatch.cs" />
     <Compile Include="ModCore.cs" />
-    <Compile Include="Patch\ImportExcelPatch.cs" />
     <Compile Include="Patch\InheritSpecialTypePatch.cs" />
     <Compile Include="Patch\NefiaRewardPatch.cs" />
     <Compile Include="Patch\SpawnEnemyPatch.cs" />

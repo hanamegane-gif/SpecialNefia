@@ -37,14 +37,6 @@ namespace SpecialNefia
         public void OnStartCore()
         {
             DeployTypeFallback.DeployTypeFallbackSetting();
-            if (!AppDomain.CurrentDomain.GetAssemblies().Any(a => a.GetName().Name == "CustomWhateverLoader"))
-            {
-                ImportExcelPatch.ExecImportLanguageGame(Info);
-                ImportExcelPatch.ExecImportLanguageGeneral(Info);
-                ImportExcelPatch.ExecImportZones(Info);
-                ImportExcelPatch.ExecImportThings(Info);
-                ImportExcelPatch.ExecImportElements(Info);
-            }
         }
 
         internal static void Log(object payload)

@@ -1,41 +1,48 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 
 namespace SpecialNefia.Deploy
 {
     class DeployTypeFallback
     {
+        private static List<string> TargetNamespaceList { get; } = new List<string>
+        {
+            null, //ZoneSpecialNefia
+            "SpecialNefia.SpecialZoneEvent",
+        };
+
+        private static Dictionary<Type, string> BaseClassResolver { get; } = new Dictionary<Type, string>
+        {
+            { typeof(Zone_RandomDungeon), "Zone_RandomDungeon" },
+            { typeof(ZoneEvent), "ZoneEvent" },
+        };
+
         internal static void DeployTypeFallbackSetting()
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
-            var targetNamespaceList = new List<string> 
-            {
-                null, //ZoneSpecialNefia
-                "SpecialNefia.SpecialZoneEvent",
-            };
             var typeFallbackSetting = ReadTypeFallbackSetting();
             bool shouldFileUpdate = false;
 
-            foreach (var targetNamespace in targetNamespaceList)
+            foreach (var targetNamespace in TargetNamespaceList)
             {
                 var classes = assembly.GetTypes().Where(t => t.IsClass && t.Namespace == targetNamespace);
-
 
                 foreach (var type in classes)
                 {
                     string className = type.Name;
                     string baseClass = "";
 
-                    if (typeof(Zone_RandomDungeon).IsAssignableFrom(type))
+                    foreach (var kvp in BaseClassResolver)
                     {
-                        baseClass = "Zone_RandomDungeon";
-                    }
-
-                    if (typeof(ZoneEvent).IsAssignableFrom(type))
-                    {
-                        baseClass = "ZoneEvent";
+                        if (kvp.Key.IsAssignableFrom(type))
+                        {
+                            baseClass = kvp.Value;
+                            break;
+                        }
                     }
 
                     if (baseClass == "")
@@ -43,11 +50,16 @@ namespace SpecialNefia.Deploy
                         continue;
                     }
 
-                    string fallbackRowString = assembly.GetName().Name + "," + (targetNamespace + ((targetNamespace.IsEmpty()) ? "" : ".") + className) + "," + baseClass;
+                    // "「アセンブリ名」,「名前空間.クラス名」, 「フォールバック先Elinクラス名」"
+                    StringBuilder fallbackSB = new StringBuilder(110);
+                    fallbackSB.Append(assembly.GetName().Name).Append(",");
+                    fallbackSB.Append(targetNamespace).Append(String.IsNullOrEmpty(targetNamespace) ? "" : ".");
+                    fallbackSB.Append(className).Append(",");
+                    fallbackSB.Append(baseClass);
 
-                    if (!typeFallbackSetting.Contains(fallbackRowString))
+                    if (!typeFallbackSetting.Contains(fallbackSB.ToString()))
                     {
-                        typeFallbackSetting.Add(fallbackRowString);
+                        typeFallbackSetting.Add(fallbackSB.ToString());
                         shouldFileUpdate = true;
                     }
                 }
