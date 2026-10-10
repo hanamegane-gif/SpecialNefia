@@ -13,7 +13,7 @@ namespace SpecialNefia.Config
     {
         const string __CONFIG_FILE_NAME__ = "byakko.elin.SpecialNefia.cfg";
 
-        private static ConfigFile CustomConfig;
+        public static ConfigFile CustomConfig;
         private static ConfigEntry<int> _SpecialNefiaChance;
         private static ConfigEntry<bool> _LawlessRuneFeature;
 

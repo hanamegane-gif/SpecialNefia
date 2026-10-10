@@ -1,14 +1,12 @@
 ﻿using BepInEx;
 using HarmonyLib;
-using SpecialNefia.Config;
+using SPNC = SpecialNefia.Config;
 using SpecialNefia.Deploy;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 using System.Reflection;
 using System;
-using System.Dynamic;
-using System.Linq;
-using SpecialNefia.Patch;
+using EModding;
 
 namespace SpecialNefia
 {
@@ -20,7 +18,7 @@ namespace SpecialNefia
     }
 
     [BepInPlugin(ModInfo.GUID, ModInfo.Name, ModInfo.Version)]
-    internal class SpecialNefia : BaseUnityPlugin
+    internal class SpecialNefia : BaseUnityPlugin, IModConfig
     {
         internal static SpecialNefia Instance { get; private set; }
 
@@ -31,12 +29,17 @@ namespace SpecialNefia
             var harmony = new Harmony(ModInfo.GUID);
             harmony.PatchAll();
 
-            ModConfig.LoadConfig();
+            SPNC.ModConfig.LoadConfig();
         }
 
         public void OnStartCore()
         {
             DeployTypeFallback.DeployTypeFallbackSetting();
+        }
+
+        public void OnBuildConfig(UINote note)
+        {
+            note.AddAll(SPNC.ModConfig.CustomConfig);
         }
 
         internal static void Log(object payload)

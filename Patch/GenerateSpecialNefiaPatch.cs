@@ -55,7 +55,10 @@ namespace SpecialNefia.Patch
 
         internal static string ConvertToSpecialNefia(string idZone)
         {
-            return (ModConfig.SpecialNefiaChance > EClass.rnd(100)) ? "byakko_mod_spn_" + idZone : idZone;
+            bool chanceRoll = ModConfig.SpecialNefiaChance > EClass.rnd(100);
+            bool isRandom = EClass.sources.zones.rows.Where(r => r.tag.Contains("random") && r.id == idZone).Any();
+
+            return (chanceRoll && isRandom) ? "byakko_mod_spn_" + idZone : idZone;
         }
 
         internal static void InitSpecialType(Zone generatedNefia)

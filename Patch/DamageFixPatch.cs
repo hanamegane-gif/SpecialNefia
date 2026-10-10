@@ -19,6 +19,11 @@ namespace SpecialNefia.Patch
                                       .Where(m => m.Name == "DamageHP" && m.GetParameters().Length > 4)
                                       .FirstOrDefault();
 
+            foreach (var param in method.GetParameters())
+            {
+                Console.WriteLine($"Parameter: {param.Name}, Type: {param.ParameterType}");
+            }
+
             return method;
         }
 
